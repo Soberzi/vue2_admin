@@ -1,0 +1,71 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 3439170 */
+  src: url('iconfont.woff2?t=1653918906314') format('woff2'),
+       url('iconfont.woff?t=1653918906314') format('woff'),
+       url('iconfont.ttf?t=1653918906314') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-bofangliebiao:before {
+  content: "\e696";
+}
+
+.icon-jia:before {
+  content: "\e600";
+}
+
+.icon-bianjimoban:before {
+  content: "\e601";
+}
+
+.icon-tuichu:before {
+  content: "\e602";
+}
+
+.icon-service:before {
+  content: "\e6ff";
+}
+
+.icon-tuichu1:before {
+  content: "\e66e";
+}
+
+.icon-liebiao:before {
+  content: "\e614";
+}
+
+.icon-tianjia:before {
+  content: "\e657";
+}
+
+.icon-shanchu:before {
+  content: "\e662";
+}
+
+.icon-380-indent-increase:before {
+  content: "\e6c0";
+}
+
+.icon-381-indent-decrease:before {
+  content: "\e6c2";
+}
+
+.icon-USER:before {
+  content: "\e6c6";
+}
+
+.icon-letter:before {
+  content: "\e629";
+}
+
+.icon-mange:before {
+  content: "\e639";
+}
+

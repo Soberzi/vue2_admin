@@ -1,0 +1,107 @@
+{
+  "id": "3439170",
+  "name": "admin",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "18958846",
+      "name": "播放列表",
+      "font_class": "bofangliebiao",
+      "unicode": "e696",
+      "unicode_decimal": 59030
+    },
+    {
+      "icon_id": "1269",
+      "name": "加",
+      "font_class": "jia",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "1289",
+      "name": "编辑模板",
+      "font_class": "bianjimoban",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "1309",
+      "name": "退出",
+      "font_class": "tuichu",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "69056",
+      "name": "service",
+      "font_class": "service",
+      "unicode": "e6ff",
+      "unicode_decimal": 59135
+    },
+    {
+      "icon_id": "228983",
+      "name": "退出",
+      "font_class": "tuichu1",
+      "unicode": "e66e",
+      "unicode_decimal": 58990
+    },
+    {
+      "icon_id": "538867",
+      "name": "列表",
+      "font_class": "liebiao",
+      "unicode": "e614",
+      "unicode_decimal": 58900
+    },
+    {
+      "icon_id": "1183021",
+      "name": "添加",
+      "font_class": "tianjia",
+      "unicode": "e657",
+      "unicode_decimal": 58967
+    },
+    {
+      "icon_id": "1183034",
+      "name": "删除",
+      "font_class": "shanchu",
+      "unicode": "e662",
+      "unicode_decimal": 58978
+    },
+    {
+      "icon_id": "1332097",
+      "name": "380-indent-increase",
+      "font_class": "380-indent-increase",
+      "unicode": "e6c0",
+      "unicode_decimal": 59072
+    },
+    {
+      "icon_id": "1332099",
+      "name": "381-indent-decrease",
+      "font_class": "381-indent-decrease",
+      "unicode": "e6c2",
+      "unicode_decimal": 59074
+    },
+    {
+      "icon_id": "2142887",
+      "name": "USER",
+      "font_class": "USER",
+      "unicode": "e6c6",
+      "unicode_decimal": 59078
+    },
+    {
+      "icon_id": "5092858",
+      "name": "信封",
+      "font_class": "letter",
+      "unicode": "e629",
+      "unicode_decimal": 58921
+    },
+    {
+      "icon_id": "5593690",
+      "name": "mange",
+      "font_class": "mange",
+      "unicode": "e639",
+      "unicode_decimal": 58937
+    }
+  ]
+}
