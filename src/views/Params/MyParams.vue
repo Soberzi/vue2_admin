@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>规格参数</h1>
+    <router-view></router-view>
   </div>
 </template>
 

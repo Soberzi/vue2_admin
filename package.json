@@ -8,25 +8,34 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@babel/preset-env": "^7.18.2",
     "@escook/express-joi": "^1.1.1",
+    "animate.css": "^4.1.1",
     "axios": "^0.27.2",
     "bcryptjs": "^2.4.3",
-    "core-js": "^3.8.3",
+    "core-js": "^3.23.1",
     "cors": "^2.8.5",
+    "echarts": "^5.3.3",
     "element-ui": "^2.15.8",
     "express": "^4.18.1",
     "express-jwt": "^7.7.3",
+    "file-saver": "^2.0.5",
     "jsonwebtoken": "^8.5.1",
     "jwt-decode": "^3.1.2",
     "mockjs": "^1.1.0",
     "mysql": "^2.18.1",
     "mysql2": "^2.3.3",
     "vue": "^2.6.14",
+    "vue-i18n": "^8.26.7",
+    "vue-pdf": "3.0",
     "vue-router": "^3.5.1",
-    "vuex": "^3.6.2"
+    "vue-type-writer": "^0.2.1",
+    "vuex": "^3.6.2",
+    "wangeditor": "^4.7.15",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.16",
+    "@babel/core": "^7.18.5",
     "@babel/eslint-parser": "^7.12.16",
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-eslint": "~5.0.0",
@@ -42,6 +51,7 @@
     "eslint-plugin-vue": "^8.0.3",
     "less": "^4.0.0",
     "less-loader": "^8.0.0",
+    "script-loader": "^0.7.2",
     "vue-cli-plugin-windicss": "~1.1.4",
     "vue-template-compiler": "^2.6.14"
   }

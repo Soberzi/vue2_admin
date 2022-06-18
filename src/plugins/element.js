@@ -73,7 +73,8 @@ import {
   PageHeader,
   CascaderPanel,
   Result,
-  Message
+  Message,
+  Notification
 } from 'element-ui'
 
 // 放入数组中
@@ -161,5 +162,7 @@ export default function getElementui (Vue) {
   })
   // 解决总是弹出提示框的问题
   Vue.component(Message.name, Message)
+  Vue.component(Notification.name, Notification)
   Vue.prototype.$message = Message
+  Vue.prototype.$notify = Notification
 }

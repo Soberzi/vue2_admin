@@ -6,20 +6,25 @@ import getElementui from './plugins/element'
 import './assets/css/reset.css'
 import './assets/iconfont/iconfont.css'
 import 'windi.css'
+// 导入 echarts
+import * as echarts from 'echarts'
+import 'animate.css'
 
-Vue.config.productionTip = false
-
-// 持久化
-let userinfo = sessionStorage.getItem('userinfo')
-if (userinfo) {
-  userinfo = JSON.parse(userinfo)
-  store.commit('userModule/setUser', userinfo)
-}
+// 导入语言
+import i18n from './lang/index.js'
+import './router/permission.js'
+import './utils/SessionStorage.js'
 
 getElementui(Vue)
+
+// 挂载原型上 全局使用
+Vue.prototype.$echarts = echarts
+
+Vue.config.productionTip = false
 
 new Vue({
   router,
   store,
+  i18n,
   render: h => h(App)
 }).$mount('#app')

@@ -4,7 +4,7 @@ export default {
   namespaced: true,
   state: () => ({
     userinfo: {
-      user: '',
+      username: '',
       token: ''
     }
   }),
@@ -17,7 +17,7 @@ export default {
     },
     // 清空信息
     cleanUser (state) {
-      state.userinfo.user = ''
+      state.userinfo.username = ''
       state.userinfo.token = ''
     }
   },

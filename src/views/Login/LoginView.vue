@@ -1,12 +1,12 @@
 <template>
-  <div class="login">
+  <div class="login animate__animated  animate__lightSpeedInRight">
     <el-row>
-      <el-col :lg="15" :md="12" style="min-height:100vh" class="left">
-        <img src="https://pinia.vuejs.org/logo.svg" alt="" style="width:150px">
-        <span>欢迎光临 Pinia!</span>
-        <span style="font-size:25px">后台管理系统</span>
+      <el-col :lg="15" :md="12" :xs="0" :sm="0" style="min-height:90vh" class="left">
+        <img class="animate__animated animate__bounce" src="https://pinia.vuejs.org/logo.svg" alt="" style="width:150px">
+        <span class="animate__animated animate__rubberBand">欢迎光临 Pinia!</span>
+        <span class="animate__animated animate__rubberBand" style="font-size:25px">后台管理系统</span>
       </el-col>
-      <el-col :lg="9" :md="12" style="min-height:100vh" class="bg-light-50 right">
+      <el-col :lg="9" :md="12" :xs="24" style="min-height:100vh" class="bg-light-50 right  ">
         <h2>欢迎回来</h2>
         <span>账号密码登录</span>
         <el-form ref="formRef" :rules="rules" :model="form" status-icon label-width="80px" class="demo-ruleForm">
@@ -39,8 +39,8 @@ export default {
     return {
       info: '',
       form: {
-        username: '',
-        password: null
+        username: 'pinia',
+        password: 123456
       },
       rules: {
         username: [
@@ -122,6 +122,7 @@ export default {
     flex-direction: column;
     justify-content: center;
     }
+
   .left{
   text-align: center;
   font-size: 50px;

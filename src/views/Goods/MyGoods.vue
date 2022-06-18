@@ -7,7 +7,7 @@
       <el-input @change="searchinput" v-model="input" placeholder="搜索内容"></el-input>
       <el-button type="primary" @click="searchinput">查询</el-button>
       <router-link to="/addgoods">
-        <el-button type="primary">
+        <el-button type="primary" @click="open">
           页面添加
         </el-button>
       </router-link>
@@ -16,7 +16,7 @@
       </el-button>
     </div>
     <!-- 2.表格区域展示视图数据 -->
-    <div class="wrapper">
+    <div class="wrapper animate__animated animate__bounceInRight">
       <el-table :data="tableData" border style="width: 100%;border-radius: 5px;" max-height="400">
         <el-table-column type="selection" width="55" fixed='left'>
         </el-table-column>
@@ -29,7 +29,7 @@
         <el-table-column prop="goods_weight" label="重量" width="100"></el-table-column>
         <el-table-column prop="name" label="商品图片"></el-table-column>
         <el-table-column prop="name" label="商品卖点"></el-table-column>
-        <el-table-column prop="name" label="商品描述"></el-table-column>
+        <el-table-column show-overflow-tooltip prop="goods_name" label="商品描述" width="200"></el-table-column>
         <el-table-column prop="name" label="操作" width="150" fixed="right">
           <template slot-scope="scope">
             <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
@@ -41,7 +41,7 @@
     <!-- 3.分页 -->
     <my-pagination :total="total" :pagesize="pagesize" @changePage='changePage'></my-pagination>
     <!-- 4.对话框  方法1.父传子，2.children 3.ref-->
-    <el-dialog title="提示" :visible.sync="dialogVisible" width="70%">
+    <el-dialog title="商品添加" :visible.sync="dialogVisible" width="70%" :before-close="clearForm" ref="dialog">
       <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
         <el-form-item label="类目选择" prop="category">
           <el-button type="primary" @click="innerVisible=true" style="margin-right:20px;">类目选择</el-button>
@@ -73,19 +73,17 @@
           <el-input v-model="ruleForm.sellPoint"></el-input>
         </el-form-item>
         <el-form-item label="商品图片" prop="image">
-          <el-button type="primary">上传图片</el-button>
+          <el-button type="primary" @click="innerVisibleImg=true">上传图片</el-button>
+          <img :src="ruleForm.image" style="margin-top:5px;width:100px">
         </el-form-item>
         <el-form-item label="商品描述" prop="descs">
-          <textarea name="" id="" cols="30" rows="5"></textarea>
-        </el-form-item>
-        <el-form-item>
-          <el-button type="primary" @click="submitForm('ruleForm')">添加</el-button>
-          <el-button @click="resetForm('ruleForm')" type="primary">重置</el-button>
+          <!-- 富文本编译器 -->
+          <wang-editor @sendEditor="sendEditor" ref="myEditor"></wang-editor>
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
-        <el-button @click="dialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+        <el-button @click="clearForm">取 消</el-button>
+        <el-button type="primary" @click="submitForm">确 定</el-button>
       </span>
       <!-- 1.内弹框：类目选择 -->
       <el-dialog width="40%" title="类目选择" :visible.sync="innerVisible" append-to-body>
@@ -98,9 +96,11 @@
       </el-dialog>
       <!-- 2.内弹框：上传图片 -->
       <el-dialog width="40%" title="上传图片" :visible.sync="innerVisibleImg" append-to-body>
+        <!--  -->
+        <uploading @sendImg="sendImg"></uploading>
         <span slot="footer" class="dialog-footer">
           <el-button @click="innerVisibleImg = false">取 消</el-button>
-          <el-button type="primary" @click="innerVisibleImg=false">确 定</el-button>
+          <el-button type="primary" @click="showImg">确 定</el-button>
         </span>
       </el-dialog>
     </el-dialog>
@@ -112,11 +112,14 @@
 import { getGoodsList } from '@/api/Goods/index.js'
 import MyPagination from '@/components/MyPagination/MyPagination.vue'
 import FirstDialog from './MyDialog/FirstDialog.vue'
+import Uploading from './MyDialog/Uploading.vue'
+import WangEditor from './WangEditor.vue'
 export default {
-  components: { MyPagination, FirstDialog },
+  components: { MyPagination, FirstDialog, Uploading, WangEditor },
   data () {
     return {
       innerVisibleImg: false, // 图片弹框
+      imgUrl: '', // 图片路径
       ruleForm: {
         title: '', // 商品名称
         price: '',
@@ -152,6 +155,26 @@ export default {
     }
   },
   methods: {
+    // 接收wangEditor数据
+    sendEditor (val) {
+      this.ruleForm.descs = val
+    },
+    open () {
+      this.$notify.info({
+        title: '提示消息',
+        message: '页面添加只制做了页面,相关功能实现已经在弹框添加完成'
+      })
+    },
+    // 回显图片确定按钮
+    showImg () {
+      this.innerVisibleImg = false
+      this.ruleForm.image = this.imgUrl
+    },
+    // 显示图片地址
+    sendImg (val) {
+      // console.log('图片地址：', val)
+      this.imgUrl = val
+    },
     // 获取tree数据
     sendTreeData (val) {
       this.treeData = val
@@ -165,21 +188,35 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           alert('submit!')
+          this.$message({
+            message: '恭喜你添加商品成功',
+            type: 'success'
+          })
+          // 清空表单
+          this.resetForm()
         } else {
           console.log('error submit!!')
           return false
         }
       })
     },
-    resetForm (formName) {
-      this.$refs[formName].resetFields()
+    // 清空表单数据
+    clearForm () {
+      // 清空表单 方法1.使用element里面的重置表单 方法2：自己手动初始化data的ruleFrom
+      this.dialogVisible = false
+      this.$refs.ruleForm.resetFields()
+      // 单独清空编辑器内容
+      this.$refs.myEditor.editor.txt.clear()
     },
     // 添加商品，出现弹框
     addGoods () {
       this.dialogVisible = true
     },
+    // 编辑操作
     handleEdit (index, row) {
-      console.log(index, row)
+      // 点击编辑按钮，显示弹框
+      // 弹框上回显数据展示--当前的行的数据
+      this.$refs.dialog.dialogVisible = true
     },
     handleDelete (index, row) {
       console.log(index, row)

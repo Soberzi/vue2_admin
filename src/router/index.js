@@ -6,7 +6,6 @@ import Home from '@/views/Home/MyHome.vue'
 import OrderList from '@/views/Order/OrderList/OrderList.vue'
 import OrderBack from '@/views/Order/OrderBack/OrderBack.vue'
 import NotFound from '@/views/404/404.vue'
-import store from '../store/index.js'
 
 Vue.use(VueRouter)
 
@@ -50,7 +49,34 @@ const routes = [
         meta: {
           title: '规格参数'
         },
-        component: () => import('@/views/Params/MyParams.vue')
+        component: () => import('@/views/Params/MyParams.vue'),
+        redirect: '/params/specifications',
+        children: [
+          {
+            path: 'specifications',
+            name: 'Specifications',
+            meta: {
+              title: '规格包装'
+            },
+            component: () => import('@/views/Params/ParamsInfo/MySpecifications.vue')
+          }
+        ]
+      },
+      {
+        path: '/user',
+        name: 'User',
+        meta: {
+          title: '个人中心'
+        },
+        component: () => import('@/views/User/UserManger.vue')
+      },
+      {
+        path: '/cart',
+        name: 'Cart',
+        meta: {
+          title: '购物车案例'
+        },
+        component: () => import('@/views/CartCase/CartCase.vue')
       },
       {
         path: '/advert',
@@ -104,22 +130,6 @@ const routes = [
 
 const router = new VueRouter({
   routes
-})
-
-// 路由拦截
-router.beforeEach((to, from, next) => {
-  // 判断是否用户是否登录，用循环检查每一个路由元信息有无isLogin等true
-  if (to.matched.some(ele => ele.meta.isLogin)) {
-    // 2.判断当前用户是否已经登录
-    const token = store.state.userModule.userinfo.token
-    if (token) {
-      next()
-    } else {
-      next('/login')
-    }
-  } else {
-    next() // 不需要登录
-  }
 })
 
 export default router

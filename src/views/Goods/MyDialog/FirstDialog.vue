@@ -35,7 +35,7 @@ export default {
   methods: {
     // 点击tree获取数据
     nodeClick (data, node) {
-      console.log(data, node)
+      // console.log(data, node)
       // 传递数据给父组件
       this.$emit('sendTreeData', data)
     },

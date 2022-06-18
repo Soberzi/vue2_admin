@@ -6,6 +6,9 @@
 
 <script>
 export default {
+  mounted () {
+    this.$message('该页面待开发！')
+  }
 
 }
 </script>

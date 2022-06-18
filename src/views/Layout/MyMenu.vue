@@ -1,39 +1,53 @@
 <template>
   <div>
-    <el-menu default-active="/" class="el-menu-vertical-demo" background-color="#111827" text-color="#fff" active-text-color="#ffd04b" :router="true" :collapse="isCollapse">
+    <el-menu class="el-menu-vertical-demo" background-color="#111827" text-color="#fff" active-text-color="#ffd04b" :router="true" :collapse="isCollapse">
       <div class="avatar">
         <img src="../../assets/logo.png" alt="">
-        <span v-if="!isCollapse">Pinia后台管理系统</span>
+        <span v-if="!isCollapse">Pinia{{$t('menus.system')}}</span>
       </div>
       <el-menu-item index="/">
         <i class="el-icon-menu"></i>
-        <span slot="title">首页</span>
+        <span slot="title">{{$t('menus.home')}}</span>
       </el-menu-item>
       <el-menu-item index="/goods">
         <i class="el-icon-document"></i>
-        <span slot="title">商品管理</span>
+        <span slot="title">{{$t('menus.goods')}}</span>
       </el-menu-item>
-      <el-menu-item index="/params">
-        <i class="el-icon-setting"></i>
-        <span slot="title">规格参数</span>
+      <el-submenu index="/params">
+        <template slot="title">
+          <i class="el-icon-setting"></i>
+          <span slot="title">{{$t('menus.params')}}</span>
+        </template>
+        <el-menu-item index="/params/specifications">
+          <i class="el-icon-setting"></i>
+          <span slot="title">{{$t('menus.package')}}</span>
+        </el-menu-item>
+      </el-submenu>
+      <el-menu-item index="/user">
+        <i class="el-icon-user"></i>
+        <span slot="title">{{$t('menus.user')}}</span>
+      </el-menu-item>
+      <el-menu-item index="/cart">
+        <i class="el-icon-shopping-cart-full"></i>
+        <span slot="title">{{$t('menus.cart')}}</span>
       </el-menu-item>
       <el-menu-item index="/advert">
-        <i class="el-icon-setting"></i>
-        <span slot="title">广告分类</span>
+        <i class="el-icon-s-promotion"></i>
+        <span slot="title">{{$t('menus.advert')}}</span>
       </el-menu-item>
       <el-submenu index="/order">
         <template slot="title">
           <i class="el-icon-location"></i>
-          <span>订单管理</span>
+          <span>{{$t('menus.order')}}</span>
         </template>
         <el-menu-item-group>
           <el-menu-item index="/order/orderlist">
             <i class="el-icon-setting"></i>
-            <span slot="title">订单列表</span>
+            <span slot="title">{{$t('menus.orderlist')}}</span>
           </el-menu-item>
           <el-menu-item index="/order/orderback">
             <i class="el-icon-setting"></i>
-            <span slot="title">退货管理</span>
+            <span slot="title">{{$t('menus.back')}}</span>
           </el-menu-item>
         </el-menu-item-group>
       </el-submenu>
